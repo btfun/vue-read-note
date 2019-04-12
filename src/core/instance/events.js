@@ -12,7 +12,7 @@ import { updateListeners } from '../vdom/helpers/index'
 export function initEvents (vm: Component) {
   vm._events = Object.create(null)
   vm._hasHookEvent = false
-  // init parent attached events
+  // init parent attached events 初始化父级附加事件
   const listeners = vm.$options._parentListeners
   if (listeners) {
     updateComponentListeners(vm, listeners)
@@ -32,6 +32,7 @@ function remove (event, fn) {
 function createOnceHandler (event, fn) {
   const _target = target
   return function onceHandler () {
+    //this指向全局对象window
     const res = fn.apply(null, arguments)
     if (res !== null) {
       _target.$off(event, onceHandler)
